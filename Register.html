@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cadastrar</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+      <table>
+          <h3>Cadastrar</h3>
+          <tr>
+              <td>Usuário: </td>
+              <td><input type="text" name="user" id="user"></td>
+          </tr>
+
+          <tr>
+              <td>Raça:</td>
+                  <td>
+                      <select name="raca" id="raca">
+                          <option value="Uruk-hai">Uruk-hai</option>
+                          <option value="Goblin">Goblin</option>
+                          <option value="Snaga">Snaga</option>
+                      </select>
+                  </td>
+          </tr>
+
+          <tr>
+              <td>Região:</td>
+                  <td>
+                      <select name="regiao" id="regiao">
+                          <option value="Isengard">Isengard</option>
+                          <option value="Orthanc">Orthanc</option>
+                          <option value="Rohan">Rohan</option>
+                      </select>
+                  </td>
+          </tr>
+          <tr>
+              <td><input type="submit" value="Cadastrar" onClick="enviarDados();"></td>
+          </tr>
+          </table>
+
+        <script>
+            function enviarDados(){
+                var user = document.getElementById("user").value;
+                var raca = document.getElementById("raca").value;
+                var regiao = document.getElementById("regiao").value;
+
+                var object = new Object();
+                    object.user = user;
+                    object.raca = raca;
+                    object.regiao = regiao;
+
+                var arrayObject = new Array();
+                    arrayObject.push(object);
+
+                // var arrayObject = new Set();
+                // var object = {user: user, raca: raca, regiao: regiao};
+
+                // arrayObject.add(object);
+
+                var datas = JSON.parse(localStorage.getItem('arrayObject'));
+
+                if(datas.length > 0){
+                  datas.push(object);
+                  localStorage.setItem('arrayObject', JSON.stringify(datas));
+                }else{
+                  localStorage.setItem('arrayObject', JSON.stringify(arrayObject));
+                }
+
+
+
+                window.location = "Table.html";
+            }
+        </script>
+    </body>
+</html>
